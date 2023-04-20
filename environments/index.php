@@ -41,7 +41,6 @@ return [
             'yii_test',
         ],
         'setCookieValidationKey' => [
-            'api/config/main-local.php',
             'common/config/codeception-local.php',
         ],
     ],
@@ -56,7 +55,6 @@ return [
             'yii',
         ],
         'setCookieValidationKey' => [
-            'api/config/main-local.php',
         ],
     ],
 ];

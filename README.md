@@ -13,3 +13,6 @@ Didn't implement:
 * filter fruits in index/favorites page by "name" and "family"
 * tests
 * better validation logic in services/repositories
+
+TODO:
+1. rework `setCookieValidationKey`. Make it generate from outside

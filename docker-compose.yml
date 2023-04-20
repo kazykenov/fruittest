@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     build:
-      context: ./frontend
+      context: ./infra/frontend
       dockerfile: Dockerfile
       target: production-stage
     ports:
@@ -17,11 +17,11 @@ services:
     env_file:
       - .env
     build:
-      context: ./frontend
+      context: ./infra/frontend
       dockerfile: Dockerfile
       target: build-stage
     volumes:
-      - ./frontend/vue:/app
+      - ./frontend:/app
     command: npm run dev
     user: node
     ports:
@@ -32,7 +32,7 @@ services:
   api:
     env_file:
       - .env
-    build: api
+    build: ./infra/api
     ports:
       - ${BACKEND_PORT}:80
     # todo: remove all volumes, make the image self-contained
@@ -47,7 +47,7 @@ services:
   console:
     env_file:
       - .env
-    build: console
+    build: ./infra/console
     command: tail -F anything
     # todo: remove all volumes, make the image self-contained
     volumes:
