@@ -5,10 +5,11 @@ COPY ./backend/composer.lock ./backend/composer.json ./
 RUN composer install
 
 # production stage
-# todo: can use an image with no composer (and many other extensions) installed
-FROM yiisoftware/yii2-php:8.1-fpm-nginx as production-stage
+FROM php:8.1-cli as production-stage
 WORKDIR /app
+RUN docker-php-ext-install pdo_mysql
+ENV PATH="$PATH:/app/console"
 COPY --from=build-stage /app/vendor ./vendor
-COPY ./infra/api/app.conf /etc/nginx/conf.d/default.conf
 COPY ./backend/common ./common
-COPY ./backend/api ./api
+COPY ./backend/console ./console
+USER 1000

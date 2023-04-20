@@ -1,4 +1,3 @@
-/yii
 /yii_test
 /yii_test.bat
 
@@ -9,3 +8,6 @@ phpunit.phar
 
 # ignore generated files
 /api/web/index-test.php
+
+# composer vendor dir
+/vendor

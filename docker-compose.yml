@@ -5,8 +5,8 @@ services:
     env_file:
       - .env
     build:
-      context: ./infra/frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./infra/frontend/Dockerfile
       target: production-stage
     ports:
       - ${FRONTEND_PORT}:80
@@ -17,8 +17,8 @@ services:
     env_file:
       - .env
     build:
-      context: ./infra/frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./infra/frontend/Dockerfile
       target: build-stage
     volumes:
       - ./frontend:/app
@@ -32,13 +32,15 @@ services:
   api:
     env_file:
       - .env
-    build: ./infra/api
+    build:
+      context: .
+      dockerfile: ./infra/api/Dockerfile
     ports:
       - ${BACKEND_PORT}:80
     # todo: remove all volumes, make the image self-contained
     volumes:
       - composer-cache:/root/.composer/cache:rw
-      - ./:/app
+#      - ./:/app
     networks:
       - backend-network
     depends_on:
@@ -47,12 +49,14 @@ services:
   console:
     env_file:
       - .env
-    build: ./infra/console
+    build:
+      context: .
+      dockerfile: ./infra/console/Dockerfile
     command: tail -F anything
     # todo: remove all volumes, make the image self-contained
     volumes:
       - composer-cache:/root/.composer/cache:rw
-      - ./:/app
+#      - ./:/app
     depends_on:
       - mysql
     networks:
