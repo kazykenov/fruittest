@@ -1,33 +1,12 @@
 version: '3.2'
 
 services:
-  frontend:
-    env_file:
-      - .env
+  vendor-shared:
+    image: vendor-shared
     build:
       context: .
-      dockerfile: ./infra/frontend/Dockerfile
-      target: production-stage
-    ports:
-      - ${FRONTEND_PORT}:80
-    depends_on:
-      - api
-
-  frontend-dev:
-    env_file:
-      - .env
-    build:
-      context: .
-      dockerfile: ./infra/frontend/Dockerfile
-      target: build-stage
-    volumes:
-      - ./frontend:/app
-    command: npm run dev
-    user: node
-    ports:
-      - ${FRONTEND_PORT}:5173
-    depends_on:
-      - api
+      dockerfile: ./infra/composer/Dockerfile
+    command: exit
 
   api:
     env_file:
@@ -37,14 +16,11 @@ services:
       dockerfile: ./infra/api/Dockerfile
     ports:
       - ${BACKEND_PORT}:80
-    # todo: remove all volumes, make the image self-contained
-    volumes:
-      - composer-cache:/root/.composer/cache:rw
-#      - ./:/app
     networks:
       - backend-network
     depends_on:
       - mysql
+      - vendor-shared
 
   console:
     env_file:
@@ -53,14 +29,22 @@ services:
       context: .
       dockerfile: ./infra/console/Dockerfile
     command: tail -F anything
-    # todo: remove all volumes, make the image self-contained
-    volumes:
-      - composer-cache:/root/.composer/cache:rw
-#      - ./:/app
     depends_on:
       - mysql
+      - vendor-shared
     networks:
       - backend-network
+
+  frontend:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./infra/frontend/Dockerfile
+    ports:
+      - ${FRONTEND_PORT}:80
+    depends_on:
+      - api
 
   mysql:
     image: mysql:5.7
@@ -69,14 +53,8 @@ services:
       - MYSQL_DATABASE=yii2advanced
       - MYSQL_USER=yii2advanced
       - MYSQL_PASSWORD=secret
-    ports:
-    # for external/host database management
-      - ${DB_PORT}:3306
     networks:
       - backend-network
-
-volumes:
-  composer-cache:
 
 networks:
   backend-network:

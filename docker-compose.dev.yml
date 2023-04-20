@@ -1,0 +1,29 @@
+version: '3.2'
+
+services:
+  api:
+    volumes:
+      - ./backend:/app
+
+  console:
+    command: tail -F anything
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./infra/frontend/Dockerfile
+      target: build-stage
+    command: >
+      sh -c "npm install && npm run dev"
+    user: node
+    volumes:
+      - ./frontend:/app
+
+  mysql:
+    ports:
+      # for external/host database management
+      - ${DB_PORT}:3306

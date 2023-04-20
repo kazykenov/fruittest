@@ -1,7 +1,8 @@
 <?php
 
-namespace common\helpers;
+namespace console\helpers;
 
+use common\helpers\Fruit;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;

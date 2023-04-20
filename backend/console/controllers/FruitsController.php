@@ -3,7 +3,7 @@
 namespace console\controllers;
 
 use common\services\FruitService;
-use common\helpers\FruitClient;
+use console\helpers\FruitClient;
 use yii\console\Controller;
 
 class FruitsController extends Controller
@@ -21,14 +21,7 @@ class FruitsController extends Controller
     public function actionFetch()
     {
         $fruits = $this->client->getFruits();
-//        var_dump($fruits);
 
-//        try {
-            $this->fruitService->populateFruits($fruits);
-//        } catch (\Exception $e) {
-//            $message = $e->getMessage();
-//            echo "Unexpected error ${$message}";
-//        }
-//        echo $this->message . "\n";
+        $this->fruitService->populateFruits($fruits);
     }
 }

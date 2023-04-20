@@ -7,7 +7,7 @@ const props = defineProps<{
   apiRoute?: string,
 }>()
 
-const API_URL:string = "{{BACKEND_API_URL}}";
+const API_URL:string = !"{{BACKEND_API_URL}}".includes("BACKEND_API_URL") ? "{{BACKEND_API_URL}}" : import.meta.env.VITE_BACKEND_API_URL;
 let items:any = ref([]);
 
 onMounted(async () => {
