@@ -1,0 +1,11 @@
+/yii
+/yii_test
+/yii_test.bat
+
+# phpunit itself is not needed
+phpunit.phar
+# local phpunit config
+/phpunit.xml
+
+# ignore generated files
+/api/web/index-test.php
