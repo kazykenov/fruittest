@@ -2,7 +2,7 @@
 
 namespace common\services;
 
-use console\helpers\Fruit;
+use common\helpers\Fruit;
 use yii\data\DataProviderInterface;
 
 interface IFruitService

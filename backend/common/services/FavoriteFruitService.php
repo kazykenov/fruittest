@@ -3,7 +3,7 @@
 namespace common\services;
 
 use common\repositories\IFavoriteRepository;
-use console\helpers\FavoriteFruit;
+use common\helpers\FavoriteFruit;
 use yii\data\ArrayDataProvider;
 use yii\data\DataProviderInterface;
 

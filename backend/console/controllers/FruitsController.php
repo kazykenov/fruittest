@@ -3,7 +3,7 @@
 namespace console\controllers;
 
 use common\services\FruitService;
-use console\helpers\FruitClient;
+use common\helpers\FruitClient;
 use yii\console\Controller;
 
 class FruitsController extends Controller

@@ -3,7 +3,7 @@
 namespace common\repositories;
 
 use common\exceptions\FruitNotFoundException;
-use console\helpers\Fruit;
+use common\helpers\Fruit;
 use yii\data\DataProviderInterface;
 
 interface IFruitRepository

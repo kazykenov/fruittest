@@ -2,8 +2,8 @@
 
 namespace common\services;
 
-use console\helpers\FavoriteFruit;
-use console\helpers\Fruit;
+use common\helpers\FavoriteFruit;
+use common\helpers\Fruit;
 use yii\data\DataProviderInterface;
 
 interface IFavoriteFruitService

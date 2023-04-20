@@ -3,7 +3,7 @@
 namespace common\services;
 
 use common\repositories\IFruitRepository;
-use console\helpers\Fruit;
+use common\helpers\Fruit;
 use yii\data\DataProviderInterface;
 
 class FruitService implements IFruitService

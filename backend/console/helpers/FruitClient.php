@@ -1,6 +1,6 @@
 <?php
 
-namespace console\helpers;
+namespace common\helpers;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
